@@ -11,7 +11,7 @@
     }
 
     getEl() {
-      return this.el
+      return this.el;
     }
 
     activate(num) {
@@ -25,7 +25,7 @@
         currentNum++;
 
         if (currentNum === 4) {
-          clearTimeout(timeoutId)
+          clearTimeout(timeoutId);
         }
       }
     }
@@ -50,7 +50,7 @@
     activate() {
       const nums = [0, 1, 2, 3];
       this.panels.forEach(panel => {
-        const num = nums.splice(Math.floor(Math.random() * nums.length), 1)[0]
+        const num = nums.splice(Math.floor(Math.random() * nums.length), 1)[0];
         panel.activate(num);
       });
     }
@@ -67,12 +67,17 @@
 
   const board = new Board();
 
-  let currentNum = 0;
+  let currentNum
   let startTime;
   let timeoutId;
 
   const btn = document.getElementById('btn');
   btn.addEventListener('click', () => {
+    if (typeof timeoutId !== 'undefined') {
+      clearTimeout(timeoutId);
+    }
+
+    currentNum = 0;
     board.activate();
 
     startTime = Date.now();
